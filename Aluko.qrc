@@ -1,0 +1,28 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>dist/IMG/lookup.png</file>
+    <file>dist/IMG/email.png</file>
+    <file>dist/IMG/ledger.png</file>
+    <file>dist/IMG/mail.png</file>
+    <file>dist/IMG/excel.png</file>
+    <file>dist/IMG/db.png</file>
+    <file>dist/IMG/sap-logo-269309.png</file>
+    <file>dist/IMG/mes_oi.png</file>
+    <file>dist/IMG/mes_ui.png</file>
+    <file>dist/IMG/aluko_logo.ico</file>
+    <file>dist/IMG/Aluko_Group.png</file>
+  </qresource>
+  <qresource prefix="Button">
+    <file>dist/IMG/add.png</file>
+    <file>dist/IMG/hide.png</file>
+    <file>dist/IMG/show.png</file>
+    <file>dist/IMG/off.png</file>
+    <file>dist/IMG/on.png</file>
+    <file>dist/IMG/close.png</file>
+    <file>dist/IMG/pause.png</file>
+    <file>dist/IMG/start.png</file>
+    <file>dist/IMG/stop.png</file>
+    <file>dist/IMG/menu.png</file>
+    <file>dist/IMG/update.png</file>
+  </qresource>
+</RCC>

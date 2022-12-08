@@ -1,0 +1,15 @@
+# Aluko-SAP
+ Aluko SAP Scripting System
+#############################
+pip install --upgrade pywin32==225
+pyside6-uic ui_report.ui -o ui_main.py
+pyside6-rcc Aluko.qrc -o Aluko_rc.py 
+
+# Setup Python Enviroment
+#########################
+Step1: python -m venv venv
+        source env/bin/activate
+Step2: pip install -r setup.txt
+Step3: pyinstaller --onefile -w --icon='C:\Users\Admin\Documents\Aluko_Projects\dist\IMG\aluko_logo.ico' main.py
+        pyinstaller --onefile --icon='C:\Users\Admin\Documents\Aluko_Projects\dist\IMG\aluko_logo.ico' main.py       
+        # Bỏ -w nếu muốn hiện console
