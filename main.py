@@ -15,30 +15,6 @@ from datetime import time, datetime
 # -SUB Main--------------------------------------------------------------
 # Class Table Widget
 
-
-class TableWithCopy(QTableWidget):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def keyPressEvent(self, event):
-        super().keyPressEvent(event)
-        if event.key() == Qt.Key.Key_C and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
-            copied_cells = sorted(self.selectedIndexes())
-
-            copy_text = ''
-            max_column = copied_cells[-1].column()
-            for c in copied_cells:
-                copy_text += self.item(c.row(), c.column()).text()
-                if c.column() == max_column:
-                    copy_text += '\n'
-                else:
-                    copy_text += '\t'
-
-            QApplication.clipboard().setText(copy_text)
-
-# Class QTableWidget Action
-
-
 class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -49,40 +25,6 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         # TuNA_22112 Set Windows Title.
         self.setWindowTitle('Aluko RPA V0.0.2 20221208')
         # TuNA_221207 Set Table Widget in GUI Screen
-        self.tb_ledger = TableWithCopy()
-        if (self.tb_ledger.columnCount() < 20):
-            self.tb_ledger.setColumnCount(20)
-        if (self.tb_ledger.rowCount() < 20):
-            self.tb_ledger.setRowCount(20)
-        self.tb_ledger.setObjectName(u"tb_ledger")
-        self.tb_ledger.setMaximumSize(QSize(16777215, 16777215))
-        self.tb_ledger.setAutoFillBackground(False)
-        self.tb_ledger.setStyleSheet(u"        QHeaderView::section{\n"
-                                     "			font: 75 9pt;\n"
-                                     "            border-top:0px solid #D8D8D8;\n"
-                                     "            border-left:0px solid #D8D8D8;\n"
-                                     "            border-right:1px solid #D8D8D8;\n"
-                                     "            border-bottom: 2px solid #D8D8D8;\n"
-                                     "            background-color:white;\n"
-                                     "            padding:3px;\n"
-                                     "        }\n"
-                                     "    ")
-        self.tb_ledger.setFrameShape(QFrame.VLine)
-        self.tb_ledger.setFrameShadow(QFrame.Plain)
-        self.tb_ledger.setSizeAdjustPolicy(
-            QAbstractScrollArea.AdjustToContents)
-        self.tb_ledger.setAutoScrollMargin(10)
-        # self.tb_ledger.setDragEnabled(False)
-        # self.tb_ledger.setDragDropMode(QAbstractItemView.DragDrop)
-        # self.tb_ledger.setDefaultDropAction(Qt.CopyAction)
-        self.tb_ledger.setAlternatingRowColors(False)
-        self.tb_ledger.setGridStyle(Qt.SolidLine)
-        self.tb_ledger.setSortingEnabled(True)
-        self.tb_ledger.setCornerButtonEnabled(True)
-        self.tb_ledger.setRowCount(20)
-        self.tb_ledger.setColumnCount(20)
-        self.verticalLayout_5.addWidget(self.tb_ledger)
-        self.verticalLayout_5.addWidget(self.txt_msg)
         # TuNA_221121 End Set GUI in center the screen.
 
         self.sap = SapGui()
@@ -102,7 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         # RIBBON BUTTON.
         self.cbx_ribbon.clicked.connect(self.ribbon_menu)
         # PARAMETER BUTTON
-        self.cbx_parameter.clicked.connect(self.parameter_menu)
+        self.btn_parameter.clicked.connect(self.parameter_menu)
         # SQL BUTTON.
         self.btn_sql.clicked.connect(self.sql_frame)
         # ToExcel BUTTON
@@ -114,11 +56,14 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
     # TuNA 221117 _ Update logic for right menu.
 
     def right_menu(self):
+        self.label_2.setText("")
         width = self.side_container.width()
         if width == 0:
             newWidth = 400
+            self.label_2.setText("")
         else:
             newWidth = 0
+            self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ALUKO ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
         self.animation = QtCore.QPropertyAnimation(
             self.side_container, b'maximumWidth')
         self.animation.setDuration(500)
@@ -131,11 +76,14 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
     # TuNA 221117 _ Update logic for parameter menu.
 
     def parameter_menu(self):
+        
         width = self.menu_parameter.width()
         if width == 0:
             newWidth = 350
+            self.label_2.setText("")
         else:
             newWidth = 0
+            self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ALUKO ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
         self.animation = QtCore.QPropertyAnimation(
             self.menu_parameter, b'maximumWidth')
         self.animation.setDuration(320)

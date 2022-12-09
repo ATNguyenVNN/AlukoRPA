@@ -71,7 +71,7 @@ class SapGui():
         try:
             self.SapGuiAuto = win32.GetObject("SAPGUI")
             application = self.SapGuiAuto.GetScriptingEngine
-            #self.connection = application.OpenConnection(self.sid,True)
+            self.connection = application.OpenConnection(self.sid,True)
             self.connection = application.Children(0)
             self.session = self.connection.Children(0)
             msg = 'Connection successful.'
@@ -377,3 +377,8 @@ class SapGui():
         df_mdm.to_excel(f_combied, index=False)
         msg = ("{0}\{1}".format(os.getcwd(), f_combied))
         return msg
+    
+    #TuNA_221209 Start Subcontract Inventory Report.
+    def sap_MB5B_Subcontract(self):
+        pass
+        

@@ -1,4 +1,4 @@
-import os , sys, platform, cx_Oracle, xlsxwriter
+import os , sys, platform, oracledb, xlsxwriter
 from datetime import time, datetime
 import pandas as pd
 class MES_DB():
@@ -12,16 +12,16 @@ class MES_DB():
                      if platform.system() == "Darwin":
                             lib_dir = os.path.join(os.environ.get("HOME"), "Downloads",
                                    "instantclient_19_8")
-                            cx_Oracle.init_oracle_client(lib_dir=lib_dir)          
+                            oracledb.init_oracle_client(lib_dir=lib_dir)          
                      elif platform.system() == "Windows":
-                            cx_Oracle.init_oracle_client(lib_dir=path_lib)
+                            oracledb.init_oracle_client(lib_dir=path_lib)
               except Exception as err:
                      print(err)
 
        def DB_query(self,sql_query):
               # Configure Database.
-              self.dsn_tns = cx_Oracle.makedsn(self.host, self.port , service_name='MESDB') 
-              self.db = cx_Oracle.connect(user='Aluko', password='mesmgr', dsn=self.dsn_tns)
+              self.dsn_tns = oracledb.makedsn(self.host, self.port , service_name='MESDB') 
+              self.db = oracledb.connect(user='Aluko', password='mesmgr', dsn=self.dsn_tns)
               self.sql_query = sql_query
               self.cursor = self.db.cursor()
               self.cursor.execute(self.sql_query)
@@ -30,6 +30,7 @@ class MES_DB():
               df.fillna(value="", inplace=True)
               return df
        def DB_export(self):
+              self.cursor.execute(self.sql_query)
               # Create Excel File Name:
               dt = datetime.now()
               # Get Table Name:            

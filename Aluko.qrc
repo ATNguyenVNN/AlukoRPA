@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>dist/IMG/parameter.png</file>
     <file>dist/IMG/lookup.png</file>
     <file>dist/IMG/email.png</file>
     <file>dist/IMG/ledger.png</file>

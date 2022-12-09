@@ -23,6 +23,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QAbstract
     QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Aluko_rc
+
 class TableWithCopy(QTableWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,7 +50,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1088, 687)
+        MainWindow.resize(1048, 687)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -91,7 +92,6 @@ class Ui_MainWindow(object):
 
         self.label_2 = QLabel(self.frame_top)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setEnabled(True)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setStyleSheet(u"color: rgb(7, 64, 128);")
@@ -150,7 +150,7 @@ class Ui_MainWindow(object):
         icon1 = QIcon()
         icon1.addFile(u":/icons/dist/IMG/parameter.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_parameter.setIcon(icon1)
-        self.btn_parameter.setIconSize(QSize(27, 27))
+        self.btn_parameter.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_2.addWidget(self.btn_parameter)
 
@@ -638,7 +638,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.bottom_frame)
 
-        self.tb_ledger = TableWithCopy(self.frame)
+        self.tb_ledger = TableWithCopy()
         if (self.tb_ledger.columnCount() < 20):
             self.tb_ledger.setColumnCount(20)
         if (self.tb_ledger.rowCount() < 20):
@@ -761,7 +761,27 @@ class Ui_MainWindow(object):
         self.btn_sql_10.setIcon(icon12)
         self.btn_sql_10.setIconSize(QSize(16, 16))
 
-        self.gridLayout_6.addWidget(self.btn_sql_10, 14, 4, 1, 1)
+        self.gridLayout_6.addWidget(self.btn_sql_10, 12, 4, 1, 1)
+
+        self.btn_sql_9 = QPushButton(self.fm_parameter1)
+        self.btn_sql_9.setObjectName(u"btn_sql_9")
+        sizePolicy6.setHeightForWidth(self.btn_sql_9.sizePolicy().hasHeightForWidth())
+        self.btn_sql_9.setSizePolicy(sizePolicy6)
+        self.btn_sql_9.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_sql_9.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(7, 64, 128);\n"
+"	background-color: rgb(248,248,248);\n"
+"	border-radius:  4px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(238,238,238);\n"
+"	color: rgb(47,47,47);\n"
+"\n"
+"}")
+        self.btn_sql_9.setIcon(icon12)
+        self.btn_sql_9.setIconSize(QSize(16, 16))
+
+        self.gridLayout_6.addWidget(self.btn_sql_9, 10, 4, 1, 1)
 
         self.btn_sql_8 = QPushButton(self.fm_parameter1)
         self.btn_sql_8.setObjectName(u"btn_sql_8")
@@ -800,33 +820,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.para2, 2, 0, 1, 1)
 
-        self.btn_sql_9 = QPushButton(self.fm_parameter1)
-        self.btn_sql_9.setObjectName(u"btn_sql_9")
-        sizePolicy6.setHeightForWidth(self.btn_sql_9.sizePolicy().hasHeightForWidth())
-        self.btn_sql_9.setSizePolicy(sizePolicy6)
-        self.btn_sql_9.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_sql_9.setStyleSheet(u"QPushButton{\n"
-"	color: rgb(7, 64, 128);\n"
-"	background-color: rgb(248,248,248);\n"
-"	border-radius:  4px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(238,238,238);\n"
-"	color: rgb(47,47,47);\n"
-"\n"
-"}")
-        self.btn_sql_9.setIcon(icon12)
-        self.btn_sql_9.setIconSize(QSize(16, 16))
-
-        self.gridLayout_6.addWidget(self.btn_sql_9, 10, 4, 1, 1)
-
-        self.para3 = QLabel(self.fm_parameter1)
-        self.para3.setObjectName(u"para3")
-        self.para3.setMaximumSize(QSize(80, 16777215))
-        self.para3.setFont(font6)
-
-        self.gridLayout_6.addWidget(self.para3, 4, 0, 1, 1)
-
         self.txt_initial_9 = QLineEdit(self.fm_parameter1)
         self.txt_initial_9.setObjectName(u"txt_initial_9")
         self.txt_initial_9.setMaximumSize(QSize(150, 16777215))
@@ -844,6 +837,29 @@ class Ui_MainWindow(object):
         self.to_1.setFont(font7)
 
         self.gridLayout_6.addWidget(self.to_1, 0, 2, 1, 1)
+
+        self.para3 = QLabel(self.fm_parameter1)
+        self.para3.setObjectName(u"para3")
+        self.para3.setMaximumSize(QSize(80, 16777215))
+        self.para3.setFont(font6)
+
+        self.gridLayout_6.addWidget(self.para3, 4, 0, 1, 1)
+
+        self.to_3 = QLabel(self.fm_parameter1)
+        self.to_3.setObjectName(u"to_3")
+        self.to_3.setFont(font7)
+
+        self.gridLayout_6.addWidget(self.to_3, 4, 2, 1, 1)
+
+        self.to_2 = QLabel(self.fm_parameter1)
+        self.to_2.setObjectName(u"to_2")
+        self.to_2.setFont(font7)
+
+        self.gridLayout_6.addWidget(self.to_2, 2, 2, 1, 1)
+
+        self.verticalSpacer_27 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_6.addItem(self.verticalSpacer_27, 3, 2, 1, 1)
 
         self.btn_sql_4 = QPushButton(self.fm_parameter1)
         self.btn_sql_4.setObjectName(u"btn_sql_4")
@@ -865,27 +881,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.btn_sql_4, 0, 4, 1, 1)
 
-        self.verticalSpacer_27 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.txt_initial_10 = QLineEdit(self.fm_parameter1)
+        self.txt_initial_10.setObjectName(u"txt_initial_10")
+        self.txt_initial_10.setMaximumSize(QSize(150, 16777215))
 
-        self.gridLayout_6.addItem(self.verticalSpacer_27, 3, 2, 1, 1)
-
-        self.to_3 = QLabel(self.fm_parameter1)
-        self.to_3.setObjectName(u"to_3")
-        self.to_3.setFont(font7)
-
-        self.gridLayout_6.addWidget(self.to_3, 4, 2, 1, 1)
-
-        self.to_2 = QLabel(self.fm_parameter1)
-        self.to_2.setObjectName(u"to_2")
-        self.to_2.setFont(font7)
-
-        self.gridLayout_6.addWidget(self.to_2, 2, 2, 1, 1)
-
-        self.txt_initial_14 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_14.setObjectName(u"txt_initial_14")
-        self.txt_initial_14.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_14, 4, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.txt_initial_10, 0, 3, 1, 1)
 
         self.txt_initial_12 = QLineEdit(self.fm_parameter1)
         self.txt_initial_12.setObjectName(u"txt_initial_12")
@@ -893,37 +893,31 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.txt_initial_12, 2, 3, 1, 1)
 
-        self.txt_initial_10 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_10.setObjectName(u"txt_initial_10")
-        self.txt_initial_10.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_10, 0, 3, 1, 1)
-
         self.txt_initial_11 = QLineEdit(self.fm_parameter1)
         self.txt_initial_11.setObjectName(u"txt_initial_11")
         self.txt_initial_11.setMaximumSize(QSize(150, 16777215))
 
         self.gridLayout_6.addWidget(self.txt_initial_11, 2, 1, 1, 1)
 
-        self.btn_sql_5 = QPushButton(self.fm_parameter1)
-        self.btn_sql_5.setObjectName(u"btn_sql_5")
-        sizePolicy6.setHeightForWidth(self.btn_sql_5.sizePolicy().hasHeightForWidth())
-        self.btn_sql_5.setSizePolicy(sizePolicy6)
-        self.btn_sql_5.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_sql_5.setStyleSheet(u"QPushButton{\n"
-"	color: rgb(7, 64, 128);\n"
-"	background-color: rgb(248,248,248);\n"
-"	border-radius:  4px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(238,238,238);\n"
-"	color: rgb(47,47,47);\n"
-"\n"
-"}")
-        self.btn_sql_5.setIcon(icon12)
-        self.btn_sql_5.setIconSize(QSize(16, 16))
+        self.txt_initial_14 = QLineEdit(self.fm_parameter1)
+        self.txt_initial_14.setObjectName(u"txt_initial_14")
+        self.txt_initial_14.setMaximumSize(QSize(150, 16777215))
 
-        self.gridLayout_6.addWidget(self.btn_sql_5, 2, 4, 1, 1)
+        self.gridLayout_6.addWidget(self.txt_initial_14, 4, 1, 1, 1)
+
+        self.txt_initial_15 = QLineEdit(self.fm_parameter1)
+        self.txt_initial_15.setObjectName(u"txt_initial_15")
+        self.txt_initial_15.setMaximumSize(QSize(150, 16777215))
+
+        self.gridLayout_6.addWidget(self.txt_initial_15, 4, 3, 1, 1)
+
+        self.verticalSpacer_37 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_6.addItem(self.verticalSpacer_37, 13, 2, 1, 1)
+
+        self.verticalSpacer_36 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_6.addItem(self.verticalSpacer_36, 11, 2, 1, 1)
 
         self.btn_sql_7 = QPushButton(self.fm_parameter1)
         self.btn_sql_7.setObjectName(u"btn_sql_7")
@@ -945,25 +939,31 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.btn_sql_7, 6, 4, 1, 1)
 
-        self.verticalSpacer_37 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.btn_sql_5 = QPushButton(self.fm_parameter1)
+        self.btn_sql_5.setObjectName(u"btn_sql_5")
+        sizePolicy6.setHeightForWidth(self.btn_sql_5.sizePolicy().hasHeightForWidth())
+        self.btn_sql_5.setSizePolicy(sizePolicy6)
+        self.btn_sql_5.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_sql_5.setStyleSheet(u"QPushButton{\n"
+"	color: rgb(7, 64, 128);\n"
+"	background-color: rgb(248,248,248);\n"
+"	border-radius:  4px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(238,238,238);\n"
+"	color: rgb(47,47,47);\n"
+"\n"
+"}")
+        self.btn_sql_5.setIcon(icon12)
+        self.btn_sql_5.setIconSize(QSize(16, 16))
 
-        self.gridLayout_6.addItem(self.verticalSpacer_37, 15, 2, 1, 1)
-
-        self.verticalSpacer_36 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_6.addItem(self.verticalSpacer_36, 11, 2, 1, 1)
-
-        self.txt_initial_15 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_15.setObjectName(u"txt_initial_15")
-        self.txt_initial_15.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_15, 4, 3, 1, 1)
+        self.gridLayout_6.addWidget(self.btn_sql_5, 2, 4, 1, 1)
 
         self.txt_initial_18 = QLineEdit(self.fm_parameter1)
         self.txt_initial_18.setObjectName(u"txt_initial_18")
         self.txt_initial_18.setMaximumSize(QSize(150, 16777215))
 
-        self.gridLayout_6.addWidget(self.txt_initial_18, 14, 3, 1, 1)
+        self.gridLayout_6.addWidget(self.txt_initial_18, 12, 3, 1, 1)
 
         self.label_26 = QLabel(self.fm_parameter1)
         self.label_26.setObjectName(u"label_26")
@@ -972,7 +972,7 @@ class Ui_MainWindow(object):
         self.label_26.setMaximumSize(QSize(20, 16777215))
         self.label_26.setFont(font7)
 
-        self.gridLayout_6.addWidget(self.label_26, 14, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.label_26, 12, 2, 1, 1)
 
         self.txt_initial_7 = QLineEdit(self.fm_parameter1)
         self.txt_initial_7.setObjectName(u"txt_initial_7")
@@ -980,9 +980,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.txt_initial_7, 8, 1, 1, 1)
 
-        self.verticalSpacer_33 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.label_21 = QLabel(self.fm_parameter1)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setFont(font7)
 
-        self.gridLayout_6.addItem(self.verticalSpacer_33, 7, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.label_21, 8, 2, 1, 1)
 
         self.txt_initial_16 = QLineEdit(self.fm_parameter1)
         self.txt_initial_16.setObjectName(u"txt_initial_16")
@@ -997,17 +999,25 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.label_20, 10, 0, 1, 1)
 
+        self.verticalSpacer_33 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_6.addItem(self.verticalSpacer_33, 7, 2, 1, 1)
+
         self.txt_initial_8 = QLineEdit(self.fm_parameter1)
         self.txt_initial_8.setObjectName(u"txt_initial_8")
         self.txt_initial_8.setMaximumSize(QSize(150, 16777215))
 
         self.gridLayout_6.addWidget(self.txt_initial_8, 10, 1, 1, 1)
 
-        self.label_21 = QLabel(self.fm_parameter1)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setFont(font7)
+        self.label_22 = QLabel(self.fm_parameter1)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setFont(font7)
 
-        self.gridLayout_6.addWidget(self.label_21, 8, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.label_22, 10, 2, 1, 1)
+
+        self.verticalSpacer_35 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_6.addItem(self.verticalSpacer_35, 1, 2, 1, 1)
 
         self.txt_initial_13 = QLineEdit(self.fm_parameter1)
         self.txt_initial_13.setObjectName(u"txt_initial_13")
@@ -1015,19 +1025,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.txt_initial_13, 10, 3, 1, 1)
 
-        self.verticalSpacer_35 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_6.addItem(self.verticalSpacer_35, 1, 2, 1, 1)
-
         self.verticalSpacer_34 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.gridLayout_6.addItem(self.verticalSpacer_34, 9, 2, 1, 1)
 
-        self.label_22 = QLabel(self.fm_parameter1)
-        self.label_22.setObjectName(u"label_22")
-        self.label_22.setFont(font7)
+        self.txt_initial_5 = QLineEdit(self.fm_parameter1)
+        self.txt_initial_5.setObjectName(u"txt_initial_5")
+        self.txt_initial_5.setMaximumSize(QSize(150, 16777215))
 
-        self.gridLayout_6.addWidget(self.label_22, 10, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.txt_initial_5, 6, 1, 1, 1)
 
         self.label_18 = QLabel(self.fm_parameter1)
         self.label_18.setObjectName(u"label_18")
@@ -1054,22 +1060,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.txt_initial_6, 6, 3, 1, 1)
 
-        self.txt_initial_5 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_5.setObjectName(u"txt_initial_5")
-        self.txt_initial_5.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_5, 6, 1, 1, 1)
-
         self.verticalSpacer_32 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.gridLayout_6.addItem(self.verticalSpacer_32, 5, 2, 1, 1)
-
-        self.label_23 = QLabel(self.fm_parameter1)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setMaximumSize(QSize(80, 16777215))
-        self.label_23.setFont(font6)
-
-        self.gridLayout_6.addWidget(self.label_23, 14, 0, 1, 1)
 
         self.label_19 = QLabel(self.fm_parameter1)
         self.label_19.setObjectName(u"label_19")
@@ -1082,7 +1075,14 @@ class Ui_MainWindow(object):
         self.txt_initial_17.setObjectName(u"txt_initial_17")
         self.txt_initial_17.setMaximumSize(QSize(150, 16777215))
 
-        self.gridLayout_6.addWidget(self.txt_initial_17, 14, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.txt_initial_17, 12, 1, 1, 1)
+
+        self.label_23 = QLabel(self.fm_parameter1)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setMaximumSize(QSize(80, 16777215))
+        self.label_23.setFont(font6)
+
+        self.gridLayout_6.addWidget(self.label_23, 12, 0, 1, 1)
 
         self.btn_sql_6 = QPushButton(self.fm_parameter1)
         self.btn_sql_6.setObjectName(u"btn_sql_6")
@@ -1103,55 +1103,6 @@ class Ui_MainWindow(object):
         self.btn_sql_6.setIconSize(QSize(16, 16))
 
         self.gridLayout_6.addWidget(self.btn_sql_6, 4, 4, 1, 1)
-
-        self.verticalSpacer_38 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_6.addItem(self.verticalSpacer_38, 13, 2, 1, 1)
-
-        self.label_24 = QLabel(self.fm_parameter1)
-        self.label_24.setObjectName(u"label_24")
-        self.label_24.setMaximumSize(QSize(80, 16777215))
-        self.label_24.setFont(font6)
-
-        self.gridLayout_6.addWidget(self.label_24, 12, 0, 1, 1)
-
-        self.txt_initial_19 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_19.setObjectName(u"txt_initial_19")
-        self.txt_initial_19.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_19, 12, 1, 1, 1)
-
-        self.txt_initial_20 = QLineEdit(self.fm_parameter1)
-        self.txt_initial_20.setObjectName(u"txt_initial_20")
-        self.txt_initial_20.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_6.addWidget(self.txt_initial_20, 12, 3, 1, 1)
-
-        self.label_25 = QLabel(self.fm_parameter1)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setFont(font7)
-
-        self.gridLayout_6.addWidget(self.label_25, 12, 2, 1, 1)
-
-        self.btn_sql_11 = QPushButton(self.fm_parameter1)
-        self.btn_sql_11.setObjectName(u"btn_sql_11")
-        sizePolicy6.setHeightForWidth(self.btn_sql_11.sizePolicy().hasHeightForWidth())
-        self.btn_sql_11.setSizePolicy(sizePolicy6)
-        self.btn_sql_11.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_sql_11.setStyleSheet(u"QPushButton{\n"
-"	color: rgb(7, 64, 128);\n"
-"	background-color: rgb(248,248,248);\n"
-"	border-radius:  4px;\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(238,238,238);\n"
-"	color: rgb(47,47,47);\n"
-"\n"
-"}")
-        self.btn_sql_11.setIcon(icon12)
-        self.btn_sql_11.setIconSize(QSize(16, 16))
-
-        self.gridLayout_6.addWidget(self.btn_sql_11, 12, 4, 1, 1)
 
 
         self.verticalLayout_9.addWidget(self.fm_parameter1)
@@ -1183,16 +1134,7 @@ class Ui_MainWindow(object):
         self.dateEdit_10.setCurrentSection(QDateTimeEdit.YearSection)
         self.dateEdit_10.setCalendarPopup(True)
 
-        self.gridLayout_9.addWidget(self.dateEdit_10, 2, 1, 1, 1)
-
-        self.dateEdit_11 = QDateEdit(self.fm_parameter1_2)
-        self.dateEdit_11.setObjectName(u"dateEdit_11")
-        self.dateEdit_11.setFont(font1)
-        self.dateEdit_11.setMinimumDate(QDate(2018, 9, 1))
-        self.dateEdit_11.setCurrentSection(QDateTimeEdit.YearSection)
-        self.dateEdit_11.setCalendarPopup(True)
-
-        self.gridLayout_9.addWidget(self.dateEdit_11, 2, 3, 1, 1)
+        self.gridLayout_9.addWidget(self.dateEdit_10, 1, 1, 1, 1)
 
         self.dateEdit_9 = QDateEdit(self.fm_parameter1_2)
         self.dateEdit_9.setObjectName(u"dateEdit_9")
@@ -1203,12 +1145,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.dateEdit_9, 0, 3, 1, 1)
 
-        self.label_48 = QLabel(self.fm_parameter1_2)
-        self.label_48.setObjectName(u"label_48")
-        self.label_48.setMaximumSize(QSize(100, 16777215))
-        self.label_48.setFont(font6)
+        self.dateEdit_11 = QDateEdit(self.fm_parameter1_2)
+        self.dateEdit_11.setObjectName(u"dateEdit_11")
+        self.dateEdit_11.setFont(font1)
+        self.dateEdit_11.setMinimumDate(QDate(2018, 9, 1))
+        self.dateEdit_11.setCurrentSection(QDateTimeEdit.YearSection)
+        self.dateEdit_11.setCalendarPopup(True)
 
-        self.gridLayout_9.addWidget(self.label_48, 0, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.dateEdit_11, 1, 3, 1, 1)
+
+        self.label_41 = QLabel(self.fm_parameter1_2)
+        self.label_41.setObjectName(u"label_41")
+        self.label_41.setMaximumSize(QSize(80, 16777215))
+        self.label_41.setFont(font6)
+
+        self.gridLayout_9.addWidget(self.label_41, 1, 0, 1, 1)
 
         self.label_42 = QLabel(self.fm_parameter1_2)
         self.label_42.setObjectName(u"label_42")
@@ -1219,14 +1170,14 @@ class Ui_MainWindow(object):
         self.label_42.setSizePolicy(sizePolicy8)
         self.label_42.setFont(font7)
 
-        self.gridLayout_9.addWidget(self.label_42, 2, 2, 1, 1)
+        self.gridLayout_9.addWidget(self.label_42, 1, 2, 1, 1)
 
-        self.label_41 = QLabel(self.fm_parameter1_2)
-        self.label_41.setObjectName(u"label_41")
-        self.label_41.setMaximumSize(QSize(80, 16777215))
-        self.label_41.setFont(font6)
+        self.label_48 = QLabel(self.fm_parameter1_2)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setMaximumSize(QSize(100, 16777215))
+        self.label_48.setFont(font6)
 
-        self.gridLayout_9.addWidget(self.label_41, 2, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.label_48, 0, 0, 1, 1)
 
         self.label_40 = QLabel(self.fm_parameter1_2)
         self.label_40.setObjectName(u"label_40")
@@ -1250,10 +1201,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.dateEdit_12, 0, 1, 1, 1)
 
-        self.verticalSpacer_39 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_9.addItem(self.verticalSpacer_39, 1, 2, 1, 1)
-
 
         self.verticalLayout_13.addWidget(self.fm_parameter1_2)
 
@@ -1262,18 +1209,18 @@ class Ui_MainWindow(object):
 
         self.gb_parameter_3 = QGroupBox(self.gb_parameter)
         self.gb_parameter_3.setObjectName(u"gb_parameter_3")
-        sizePolicy6.setHeightForWidth(self.gb_parameter_3.sizePolicy().hasHeightForWidth())
-        self.gb_parameter_3.setSizePolicy(sizePolicy6)
+        sizePolicy.setHeightForWidth(self.gb_parameter_3.sizePolicy().hasHeightForWidth())
+        self.gb_parameter_3.setSizePolicy(sizePolicy)
         self.gb_parameter_3.setFont(font4)
         self.verticalLayout_14 = QVBoxLayout(self.gb_parameter_3)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
-        self.verticalSpacer_21 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_21 = QSpacerItem(10, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_14.addItem(self.verticalSpacer_21)
 
         self.horizontalLayout_20 = QHBoxLayout()
         self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
-        self.horizontalSpacer_22 = QSpacerItem(20, 5, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer_22 = QSpacerItem(10, 2, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
         self.horizontalLayout_20.addItem(self.horizontalSpacer_22)
 
@@ -1318,13 +1265,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addLayout(self.horizontalLayout_20)
 
-        self.verticalSpacer_48 = QSpacerItem(20, 2, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_48 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_14.addItem(self.verticalSpacer_48)
 
         self.horizontalLayout_27 = QHBoxLayout()
         self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
-        self.horizontalSpacer_28 = QSpacerItem(20, 2, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer_28 = QSpacerItem(10, 2, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
         self.horizontalLayout_27.addItem(self.horizontalSpacer_28)
 
@@ -1741,50 +1688,6 @@ class Ui_MainWindow(object):
         self.verticalSpacer_16 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_10.addItem(self.verticalSpacer_16)
-
-        self.horizontalLayout_28 = QHBoxLayout()
-        self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.horizontalSpacer_27 = QSpacerItem(10, 2, QSizePolicy.Fixed, QSizePolicy.Minimum)
-
-        self.horizontalLayout_28.addItem(self.horizontalSpacer_27)
-
-        self.lb_usr_9 = QLabel(self.groupBox_rpa_configure)
-        self.lb_usr_9.setObjectName(u"lb_usr_9")
-        sizePolicy9.setHeightForWidth(self.lb_usr_9.sizePolicy().hasHeightForWidth())
-        self.lb_usr_9.setSizePolicy(sizePolicy9)
-        self.lb_usr_9.setMinimumSize(QSize(0, 0))
-        self.lb_usr_9.setMaximumSize(QSize(1000, 30))
-        self.lb_usr_9.setFont(font7)
-
-        self.horizontalLayout_28.addWidget(self.lb_usr_9)
-
-        self.horizontalSpacer_19 = QSpacerItem(30, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_28.addItem(self.horizontalSpacer_19)
-
-        self.checkBox_7 = QCheckBox(self.groupBox_rpa_configure)
-        self.checkBox_7.setObjectName(u"checkBox_7")
-        self.checkBox_7.setEnabled(True)
-        sizePolicy7.setHeightForWidth(self.checkBox_7.sizePolicy().hasHeightForWidth())
-        self.checkBox_7.setSizePolicy(sizePolicy7)
-        self.checkBox_7.setStyleSheet(u"QCheckBox::indicator{\n"
-"	width: 50px;\n"
-"	height: 20px;\n"
-"}\n"
-"\n"
-"QCheckBox::indicator:checked{\n"
-"	image:url(IMG/on.png);\n"
-"}\n"
-"\n"
-"QCheckBox::indicator:unchecked{\n"
-"	image:url(IMG/off.png);\n"
-"}")
-        self.checkBox_7.setChecked(True)
-
-        self.horizontalLayout_28.addWidget(self.checkBox_7)
-
-
-        self.verticalLayout_10.addLayout(self.horizontalLayout_28)
 
         self.verticalSpacer_20 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
@@ -2217,58 +2120,53 @@ class Ui_MainWindow(object):
         self.txt_msg.setText(QCoreApplication.translate("MainWindow", u"Copyright \u00a9 2022-2030 PI Team - Aluko Viet Nam. All Rights Reserved.", None))
         self.gb_parameter.setTitle(QCoreApplication.translate("MainWindow", u"Selection Option", None))
         self.btn_sql_10.setText("")
+        self.btn_sql_9.setText("")
         self.btn_sql_8.setText("")
         self.para_1.setText(QCoreApplication.translate("MainWindow", u"Company:", None))
         self.para2.setText(QCoreApplication.translate("MainWindow", u"Plant:", None))
-        self.btn_sql_9.setText("")
-        self.para3.setText(QCoreApplication.translate("MainWindow", u"S.Location:", None))
         self.txt_initial_9.setText("")
         self.to_1.setText(QCoreApplication.translate("MainWindow", u"to", None))
-        self.btn_sql_4.setText("")
+        self.para3.setText(QCoreApplication.translate("MainWindow", u"S.Location:", None))
         self.to_3.setText(QCoreApplication.translate("MainWindow", u"to ", None))
         self.to_2.setText(QCoreApplication.translate("MainWindow", u"to ", None))
-        self.txt_initial_14.setText("")
-        self.txt_initial_12.setText("")
+        self.btn_sql_4.setText("")
         self.txt_initial_10.setText("")
+        self.txt_initial_12.setText("")
         self.txt_initial_11.setText("")
-        self.btn_sql_5.setText("")
-        self.btn_sql_7.setText("")
+        self.txt_initial_14.setText("")
         self.txt_initial_15.setText("")
+        self.btn_sql_7.setText("")
+        self.btn_sql_5.setText("")
         self.txt_initial_18.setText("")
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"to", None))
         self.txt_initial_7.setText("")
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"to ", None))
         self.txt_initial_16.setText("")
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Material:", None))
         self.txt_initial_8.setText("")
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"to ", None))
-        self.txt_initial_13.setText("")
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"to ", None))
+        self.txt_initial_13.setText("")
+        self.txt_initial_5.setText("")
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"PO Number:", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"to", None))
         self.txt_initial_6.setText("")
-        self.txt_initial_5.setText("")
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Interface:", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Inbound:", None))
         self.txt_initial_17.setText("")
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Interface:", None))
         self.btn_sql_6.setText("")
-        self.label_24.setText(QCoreApplication.translate("MainWindow", u"Mat. Group:", None))
-        self.txt_initial_19.setText("")
-        self.txt_initial_20.setText("")
-        self.label_25.setText(QCoreApplication.translate("MainWindow", u"to ", None))
-        self.btn_sql_11.setText("")
         self.gb_parameter_2.setTitle(QCoreApplication.translate("MainWindow", u"Time Option", None))
         self.dateEdit_10.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy.MM.dd", None))
-        self.dateEdit_11.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy.MM.dd", None))
         self.dateEdit_9.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy.MM.dd", None))
-        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Posting Date", None))
-        self.label_42.setText(QCoreApplication.translate("MainWindow", u"to ", None))
+        self.dateEdit_11.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy.MM.dd", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Entry Date", None))
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"to ", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Posting Date", None))
         self.label_40.setText(QCoreApplication.translate("MainWindow", u"to ", None))
         self.dateEdit_12.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy.MM.dd", None))
-        self.gb_parameter_3.setTitle(QCoreApplication.translate("MainWindow", u"Special Stock", None))
-        self.lb_usr_3.setText(QCoreApplication.translate("MainWindow", u"Subcontracting Stock (O)", None))
+        self.gb_parameter_3.setTitle(QCoreApplication.translate("MainWindow", u"Stock Type", None))
+        self.lb_usr_3.setText(QCoreApplication.translate("MainWindow", u"Vendor Stock", None))
         self.checkBox.setText("")
-        self.lb_usr_8.setText(QCoreApplication.translate("MainWindow", u"Customer Stock (B)", None))
+        self.lb_usr_8.setText(QCoreApplication.translate("MainWindow", u"Customer Stock", None))
         self.checkBox_6.setText("")
         self.label_introduce.setText(QCoreApplication.translate("MainWindow", u"If you have any question or new request, please ask me know via: sic@aluko.com", None))
         self.gb_login.setTitle(QCoreApplication.translate("MainWindow", u"Login Infomation", None))
@@ -2296,8 +2194,6 @@ class Ui_MainWindow(object):
         self.lb_usr_2.setText(QCoreApplication.translate("MainWindow", u"Token:", None))
         self.txt_usr_2.setText(QCoreApplication.translate("MainWindow", u"5616553456:AAEco-vBsBwYgDNi_H-l8PD9P59oK_yAfQk'", None))
         self.groupBox_rpa_configure.setTitle(QCoreApplication.translate("MainWindow", u"Function", None))
-        self.lb_usr_9.setText(QCoreApplication.translate("MainWindow", u"ALK Chatbot Enable", None))
-        self.checkBox_7.setText("")
         self.lb_usr_5.setText(QCoreApplication.translate("MainWindow", u"Automatic Connect SAP", None))
         self.checkBox_3.setText("")
         self.lb_usr_6.setText(QCoreApplication.translate("MainWindow", u"Automatic Connect MESDB", None))
