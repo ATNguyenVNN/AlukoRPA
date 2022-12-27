@@ -16,10 +16,12 @@ class SapGui():
         super().__init__()
         # self.sapConnect()
     # TuNA 2211118 _ Define Open SAP GUI.
+
     def open_sap(self):
         self.path = r"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"
         subprocess.Popen(self.path)
     # Login SAPGUI function.
+
     def sapLogin(self, sid, clt, usr, pwd):
         # KHAI BÁO DỮ LIỆU SAP
         self.sid = sid
@@ -58,7 +60,7 @@ class SapGui():
     def sapLogout(self):
         self.connection.CloseSession('ses[0]')
         return 'Logout SAP Completed.'
-    
+
     # Count by character in string.
     def count_char(self, dict, keys):
         count = 0
@@ -71,7 +73,7 @@ class SapGui():
         try:
             self.SapGuiAuto = win32.GetObject("SAPGUI")
             application = self.SapGuiAuto.GetScriptingEngine
-            self.connection = application.OpenConnection(self.sid,True)
+            # self.connection = application.OpenConnection(self.sid,True)
             self.connection = application.Children(0)
             self.session = self.connection.Children(0)
             msg = 'Connection successful.'
@@ -83,7 +85,7 @@ class SapGui():
     # Auto generate Material Code from self.
 
     def sapCreatePIR(self, file_path):
-        data = pd.read_excel(file_path)
+        data = pd.read_excel(file_path, skiprows=[1])
         print(data)
         data.columns = data.columns.str.replace(" ", "_")
         info_record = []
@@ -97,13 +99,13 @@ class SapGui():
                 # Subcontract
                 self.session.findById("wnd[0]/usr/radRM06I-LOHNB").Select()
                 self.session.findById(
-                    "wnd[0]/usr/ctxtEINA-LIFNR").Text = row.VENDOR   # Vendor
+                    "wnd[0]/usr/ctxtEINA-LIFNR").Text = row.LIFNR   # Vendor
                 self.session.findById(
-                    "wnd[0]/usr/ctxtEINA-MATNR").Text = row.MATERIAL  # Material
+                    "wnd[0]/usr/ctxtEINA-MATNR").Text = row.MATNR  # Material
                 self.session.findById(
-                    "wnd[0]/usr/ctxtEINE-EKORG").Text = row.PLANT     # Plant
+                    "wnd[0]/usr/ctxtEINE-EKORG").Text = row.WERKS     # Plant
                 self.session.findById(
-                    "wnd[0]/usr/ctxtEINE-WERKS").Text = row.PUR_ORG   # Pur.Org
+                    "wnd[0]/usr/ctxtEINE-WERKS").Text = row.EKORG   # Pur.Org
                 self.session.findById(
                     "wnd[0]/usr/ctxtEINA-INFNR").Text = ""   # Info Record
                 self.session.findById("wnd[0]").sendVKey(0)
@@ -144,25 +146,24 @@ class SapGui():
                 self.session.findById(
                     "wnd[0]/usr/ctxtEINE-BSTAE").Text = "0004"
                 self.session.findById(
-                    "wnd[0]/usr/txtEINE-NETPR").Text = row.NET_PRICE  # Price
+                    "wnd[0]/usr/txtEINE-NETPR").Text = row.KBETR_EXT  # Price
                 self.session.findById(
-                    "wnd[0]/usr/txtEINE-PEINH").Text = row.PER  # Per
+                    "wnd[0]/usr/txtEINE-PEINH").Text = row.KPEIN  # Per
                 self.session.findById(
-                    "wnd[0]/usr/ctxtEINE-BPRME").Text = row.OUP  # OUP
-                if row.OUN != row.OUP:
+                    "wnd[0]/usr/ctxtEINE-BPRME").Text = row.KMEIN  # OUP
+                if row.MEINS != row.KMEIN:
                     self.session.findById("wnd[0]").sendVKey(0)
                     self.session.findById(
-                        "wnd[0]/usr/txtEINE-BPUMN").Text = int(row.NUME)
+                        "wnd[0]/usr/txtEINE-BPUMN").Text = int(row.KUMZA)
                     self.session.findById(
-                        "wnd[0]/usr/txtEINE-BPUMZ").Text = row.DENO
+                        "wnd[0]/usr/txtEINE-BPUMZ").Text = row.KUMNE
                 self.session.findById("wnd[0]").sendVKey(0)
                 self.session.findById("wnd[0]").sendVKey(0)
                 self.session.findById("wnd[0]").sendVKey(0)
                 self.session.findById("wnd[0]").sendVKey(8)
-                self.session.findById(
-                    "wnd[0]/usr/ctxtRV13A-DATAB").Text = row.VAILD_FROM  # Vaid From
-                self.session.findById(
-                    "wnd[0]/usr/ctxtRV13A-DATBI").Text = row.VAILD_TO  # Vaid To
+                
+                self.session.findById("wnd[0]/usr/ctxtRV13A-DATAB").Text = row.DATAB # Vaid From
+                self.session.findById("wnd[0]/usr/ctxtRV13A-DATBI").Text = row.DATBI  # Vaid To
                 self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
                 sap_messages = self.session.findById("wnd[0]/sbar").Text
                 print(index, sap_messages)
@@ -186,17 +187,18 @@ class SapGui():
             df.to_excel(f_combied, sheet_name='PIR', index=False)
             self.count_char(sap_msg, "exits")
         err = "Exist: " + str(self.count_char(sap_msg, "exists")
-                                ) + "/" + str(data.shape[0])
+                              ) + "/" + str(data.shape[0])
         ok = "Created: " + \
             str(self.count_char(sap_msg, "created")) + \
             "/" + str(data.shape[0])
         msg = str(err) + " " + str(ok) + "        " + str(f_combied)
-        result = msg = ("{0}\{1}".format(os.getcwd(), f_combied))
+        result = ("{0}\{1}".format(os.getcwd(), f_combied))
         return msg, result
 
     def sapChangePIR(self, file_path):
-        data = pd.read_excel(file_path)
+        data = pd.read_excel(file_path,skiprows=[1])
         data.columns = data.columns.str.replace(" ", "_")
+        print(data)
         info_record = []
         pir_time = []
         try:
@@ -205,27 +207,24 @@ class SapGui():
                 self.session.findById("wnd[0]").sendVKey(0)
                 # Subcontract
                 self.session.findById("wnd[0]/usr/radRM06I-LOHNB").Select()
-                self.session.findById(
-                    "wnd[0]/usr/ctxtEINA-LIFNR").Text = row.VENDOR   # Vendor
-                self.session.findById(
-                    "wnd[0]/usr/ctxtEINA-MATNR").Text = row.MATERIAL  # Material
-                self.session.findById(
-                    "wnd[0]/usr/ctxtEINE-EKORG").Text = row.PLANT     # Plant
-                self.session.findById(
-                    "wnd[0]/usr/ctxtEINE-WERKS").Text = row.PUR_ORG   # Pur.Org
-                self.session.findById(
-                    "wnd[0]/usr/ctxtEINA-INFNR").Text = ""  # Info Record
+                self.session.findById("wnd[0]/usr/ctxtEINA-LIFNR").Text = row.LIFNR   # Vendor
+                self.session.findById("wnd[0]/usr/ctxtEINA-MATNR").Text = row.MATNR  # Material
+                self.session.findById("wnd[0]/usr/ctxtEINE-EKORG").Text = row.WERKS    # Plant
+                self.session.findById("wnd[0]/usr/ctxtEINE-WERKS").Text = row.EKORG   # Pur.Org
+                self.session.findById("wnd[0]/usr/ctxtEINA-INFNR").Text = ""  # Info Record
                 self.session.findById("wnd[0]").sendVKey(0)
+                
+                # Change Order Unit
+                if row.MEINS != self.session.findById("wnd[0]/usr/ctxtEINA-MEINS").Text:
+                    self.session.findById(
+                        "wnd[0]/usr/ctxtEINA-MEINS").Text = row.MEINS
+                    self.session.findById(
+                        "wnd[0]/usr/txtEINA-UMREN").Text = row.KUMNE
+                    self.session.findById(
+                        "wnd[0]/usr/txtEINA-UMREZ").Text = row.KUMZA
+                    self.session.findById("wnd[0]").sendVKey(0)
+
                 try:
-                    # Change Order Unit
-                    if row.OUN != self.session.findById("wnd[0]/usr/ctxtEINA-MEINS").Text:
-                        self.session.findById(
-                            "wnd[0]/usr/ctxtEINA-MEINS").Text = row.OUN
-                        self.session.findById(
-                            "wnd[0]/usr/txtEINA-UMREN").Text = row.NUME
-                        self.session.findById(
-                            "wnd[0]/usr/txtEINA-UMREZ").Text = row.DENO
-                        self.session.findById("wnd[0]").sendVKey(0)
                     self.session.findById("wnd[0]").sendVKey(0)
                     self.session.findById(
                         "wnd[0]/usr/txtEINE-APLFZ").Text = "1"
@@ -255,37 +254,36 @@ class SapGui():
                     except:
                         pass
                     self.session.findById(
-                        "wnd[0]/usr/ctxtRV13A-DATAB").Text = row.VAILD_FROM  # Vaid F
+                        "wnd[0]/usr/ctxtRV13A-DATAB").Text = row.DATAB  # Vaid F
                     self.session.findById(
-                        "wnd[0]/usr/ctxtRV13A-DATBI").Text = row.VAILD_TO  # Vaid T
+                        "wnd[0]/usr/ctxtRV13A-DATBI").Text = row.DATBI  # Vaid T
 
                     self.session.findById(
                         "wnd[0]/usr/tblSAPMV13ATCTRL_D0201").getAbsoluteRow(0).selected = True
                     self.session.findById(
-                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/txtKONP-KBETR[2,0]").Text = row.NET_PRICE
+                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/txtKONP-KBETR[2,0]").Text = row.KBETR_EXT
                     self.session.findById(
-                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/txtKONP-KPEIN[4,0]").Text = row.PER
+                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/txtKONP-KPEIN[4,0]").Text = row.KPEIN
                     self.session.findById(
-                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/ctxtKONP-KMEIN[5,0]").Text = row.OUP
-                    if row.OUN != row.OUP:
+                        "wnd[0]/usr/tblSAPMV13ATCTRL_D0201/ctxtKONP-KMEIN[5,0]").Text = row.KMEIN
+                    if row.MEINS != row.KMEIN:
                         self.session.findById(
                             "wnd[0]/mbar/menu[2]/menu[7]").select()
                         self.session.findById("wnd[0]/tbar[1]/btn[13]").press()
                         self.session.findById(
-                            "wnd[1]/usr/txtKONP-KUMNE").Text = row.DENO
+                            "wnd[1]/usr/txtKONP-KUMNE").Text = row.KUMNE
                         self.session.findById(
-                            "wnd[1]/usr/txtKONP-KUMZA").Text = row.NUME
+                            "wnd[1]/usr/txtKONP-KUMZA").Text = row.KUMZA
                         self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
 
                     self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
                     self.session.findById("wnd[1]/tbar[0]/btn[5]").press()
                     sap_messages = self.session.findById("wnd[0]/sbar").Text
-                    print(int(index)+1, row.MATERIAL, sap_messages)
                 except:
                     continue
                 finally:
                     sap_messages = self.session.findById("wnd[0]/sbar").Text
-                    print(int(index)+1, row.MATERIAL, sap_messages)
+                    print(int(index)+1, row.MATNR, sap_messages)
                     info_record.append(sap_messages)
                     gettime = datetime.now()
                     pir_time.append(gettime.strftime('%Y%m%d-%H%M%S'))
@@ -300,6 +298,8 @@ class SapGui():
             f_combied = 'Aluko_Info Record_Change' + \
                 '_' + dt.strftime('%Y%m%d-%H%M%S') + '.xlsx'
             df.to_excel(f_combied, sheet_name='PIR', index=False)
+            msg = ("{0}\{1}".format(os.getcwd(), f_combied))
+            return msg
 
     def sapCreateMaterial(self, file_path):
         data = pd.read_excel(file_path,
@@ -377,8 +377,7 @@ class SapGui():
         df_mdm.to_excel(f_combied, index=False)
         msg = ("{0}\{1}".format(os.getcwd(), f_combied))
         return msg
-    
-    #TuNA_221209 Start Subcontract Inventory Report.
+
+    # TuNA_221209 Start Subcontract Inventory Report.
     def sap_MB5B_Subcontract(self):
         pass
-        

@@ -11,5 +11,5 @@ Step1: python -m venv venv
         source env/bin/activate
 Step2: pip install -r setup.txt
 Step3: pyinstaller --onefile -w --icon='C:\Users\Admin\Documents\Aluko_Projects\dist\IMG\aluko_logo.ico' main.py
-        pyinstaller --onefile --icon='C:\Users\Admin\Documents\Aluko_Projects\dist\IMG\aluko_logo.ico' main.py       
+        pyinstaller --onefile --icon="C:\Users\Admin\Documents\AlukoRPA\RPA\dist\IMG\aluko_logo.ico" main.py       
         # Bỏ -w nếu muốn hiện console

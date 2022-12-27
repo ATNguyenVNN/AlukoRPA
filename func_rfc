@@ -1,0 +1,93 @@
+from pyrfc import Connection,ABAPApplicationError, ABAPRuntimeError, LogonError, CommunicationError
+import pandas as pd
+import re
+
+class main():
+    def __init__(self):
+        ASHOST='100.100.0.114'
+        CLIENT='100'
+        SYSNR='00'
+        USER='AMMP35'
+        PASSWD='Dua@2022@'
+        self.conn = Connection(ashost=ASHOST, sysnr=SYSNR, client=CLIENT, user=USER, passwd=PASSWD)
+
+    def query(self, Fields, SQLTable, Where = '', MaxRows=50, FromRow=0):
+        """A function to query SAP with RFC_READ_TABLE"""
+
+        # By default, if you send a blank value for fields, you get all of them
+        # Therefore, we add a select all option, to better mimic SQL.
+        if Fields[0] == '*':
+            Fields = ''
+        else:
+            Fields = [{'FIELDNAME':x} for x in Fields] # Notice the format
+
+        # the WHERE part of the query is called "options"
+        options = [{'TEXT': x} for x in Where] # again, notice the format
+        print(options)
+
+        # we set a maximum number of rows to return, because it's easy to do and
+        # greatly speeds up testing queries.
+        rowcount = MaxRows
+        try:
+        # Here is the call to SAP's RFC_READ_TABLE
+            tables = self.conn.call('RFC_READ_TABLE', \
+                        QUERY_TABLE = SQLTable, \
+                        DELIMITER = '|',\
+                        FIELDS = Fields,\
+                        OPTIONS = options, \
+                        ROWSKIPS = FromRow, ROWCOUNT = MaxRows)
+        # We split out fields and fields_name to hold the data and the column names
+        except CommunicationError:
+            print("Could not connect to server.")
+            raise
+        except LogonError:
+            print("Could not log in. Wrong credentials?")
+            raise
+        except (ABAPApplicationError, ABAPRuntimeError):
+            print("An error occurred.")
+            raise
+        fields = []
+        fields_name = []
+
+        data_fields = tables["DATA"] # pull the data part of the result set
+        data_names = tables["FIELDS"] # pull the field name part of the result set
+
+        headers = [x['FIELDNAME'] for x in data_names] # headers extraction
+        long_fields = len(data_fields) # data extraction
+        long_names = len(data_names) # full headers extraction if you want it
+
+        # now parse the data fields into a list
+        for line in range(0, long_fields):
+            fields.append(data_fields[line]["WA"].strip())
+
+        # for each line, split the list by the '|' separator
+        fields = [x.strip().split('|') for x in fields ]
+
+        # return the 2D list and the headers
+        df = pd.DataFrame(fields,columns = headers)
+        return df
+
+
+if __name__ == '__main__':
+
+    # Init the class and connect
+    # I find this can be very slow to do...
+    rfc = main()
+    # Choose your fields and table
+    fields = ['MBLNR','MATNR','BWART','WERKS']
+    table = 'MSEG'
+    # you need to put a where condition in there... could be anything
+    where = ["BWART = '101'"]
+    # where = ["MATKL = '100101'"]
+    # max number of rows to return
+    maxrows = 0
+
+    # starting row to return
+    fromrow = 0
+
+    # query SAP
+    df_export = rfc.query(fields, table, where, maxrows, fromrow)
+    # df_export = df_export.sort_values('ZSEQUEN', ascending= False)
+    print(df_export)
+    # print(max(df_export['MATNR']))
+

@@ -14,7 +14,6 @@ from func_sql import MES_DB
 from datetime import time, datetime
 # -SUB Main--------------------------------------------------------------
 # Class Table Widget
-
 class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -26,7 +25,6 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         self.setWindowTitle('Aluko RPA V0.0.2 20221208')
         # TuNA_221207 Set Table Widget in GUI Screen
         # TuNA_221121 End Set GUI in center the screen.
-
         self.sap = SapGui()
         # SYSTEM PAGES
         # LOGIN INTO SAP SYSTEM
@@ -35,10 +33,6 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         self.btn_open.clicked.connect(self.open_file)
         # CREATE
         self.btn_start.clicked.connect(self.fnc_button_create)
-        # CHANGE
-        self.btn_pause.clicked.connect(self.fnc_button_change)
-        # STOP
-        self.btn_stop.clicked.connect(self.fnc_button_stop)
         # TOGGLE BUTTON.
         self.btn_toggle.clicked.connect(self.right_menu)
         # RIBBON BUTTON.
@@ -60,7 +54,9 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         width = self.side_container.width()
         if width == 0:
             newWidth = 400
-            self.label_2.setText("")
+            print(self.label_2.width())
+            if self.label_2.width() < 696:
+                self.label_2.width()
         else:
             newWidth = 0
             self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ALUKO ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
@@ -80,7 +76,8 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         width = self.menu_parameter.width()
         if width == 0:
             newWidth = 350
-            self.label_2.setText("")
+            if self.label_2.width()< 696:
+                self.label_2.width()
         else:
             newWidth = 0
             self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ALUKO ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
@@ -150,25 +147,31 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
 
     def fnc_button_create(self):
         if self.cbx_transaction.currentText() == "Material Master Data" and self.act_Create.isChecked() == True:
-            if self.sap.sapConnect() == 'Connection successful.':
+            msg = self.sap.sapConnect()
+            if msg == 'Connection successful.':
                 MDM_CREATE = self.sap.sapCreateMaterial(str(self.file[0]))
-                print(MDM_CREATE)
                 self.load_excel(str(MDM_CREATE))
             else:
-                self.fnc_notice(self.sap.sapConnect())
+                self.fnc_notice(msg)
 
         elif self.cbx_transaction.currentText() == "Purchase Info Record" and self.act_Create.isChecked() == True:
-            if self.sap.sapConnect() == 'Connection successful.':
-                PIR_CREATE = self.sap.sapCreatePIR(str(self.file[0]))
-                print(PIR_CREATE[0])
-                self.load_excel(PIR_CREATE[0])
+            msg = self.sap.sapConnect()
+            if msg == 'Connection successful.':
+                CREATE_PIR = self.sap.sapCreatePIR(str(self.file[0]))
+                self.load_excel(str(CREATE_PIR[1]))
+            else:
+                self.fnc_notice(msg)
 
         elif self.cbx_transaction.currentText() == "Interface Table" and self.txt_sql_querry.text() != "":
             self.fnc_get_db()
 
-    def fnc_button_change(self):
-        if self.cbx_transaction.currentText() == "Purchase Info Record":
-            self.txt_msg.setText(self.sap.sapChangePIR(str(self.file[0])))
+        elif self.cbx_transaction.currentText() == "Purchase Info Record" and self.act_Change.isChecked() == True:
+            msg = self.sap.sapConnect()
+            if msg == 'Connection successful.':
+                CHANGE_PIR = self.sap.sapChangePIR(str(self.file[0]))
+                self.load_excel(str(CHANGE_PIR))
+            else:
+                self.fnc_notice(msg)
         # Change Business Partner
         if self.cbx_transaction.currentText() == "Business Partner":
             self.txt_msg.setText(self.sap.sapChangeBP(str(self.file[0])))
@@ -230,12 +233,16 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         if self.cbx_transaction.currentText() == "Material Master Data":
             df = pd.read_excel(ex_path, na_filter="",
                                skiprows=[1, 2, 3]).astype(str)
+
+        elif self.cbx_transaction.currentText() == "Purchase Info Record":
+            df = pd.read_excel(ex_path, na_filter="",skiprows=[1])
         else:
-            df = pd.read_excel(ex_path, na_filter="").astype(str)
+            df = pd.read_excel(ex_path, skiprows=[1], na_filter="").astype(str)
         if df.size == 0:
             return
         self.tb_ledger.setRowCount(df.shape[0])
         self.tb_ledger.setColumnCount(df.shape[1])
+
         header = self.tb_ledger.setHorizontalHeaderLabels(df.columns)
         # Returns pandas array object
         for row in df.iterrows():

@@ -44,7 +44,6 @@ class TableWithCopy(QTableWidget):
             QApplication.clipboard().setText(copy_text)
 
 # Class QTableWidget Action
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -337,6 +336,12 @@ class Ui_MainWindow(object):
 
         self.frame_action = QFrame(self.bottom_frame)
         self.frame_action.setObjectName(u"frame_action")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.frame_action.sizePolicy().hasHeightForWidth())
+        self.frame_action.setSizePolicy(sizePolicy3)
+        self.frame_action.setMinimumSize(QSize(320, 0))
         self.frame_action.setMaximumSize(QSize(320, 16777215))
         self.frame_action.setFrameShape(QFrame.StyledPanel)
         self.frame_action.setFrameShadow(QFrame.Raised)
@@ -352,11 +357,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.btn_open = QPushButton(self.frame_action)
         self.btn_open.setObjectName(u"btn_open")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.btn_open.sizePolicy().hasHeightForWidth())
-        self.btn_open.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.btn_open.sizePolicy().hasHeightForWidth())
+        self.btn_open.setSizePolicy(sizePolicy4)
         self.btn_open.setMinimumSize(QSize(120, 20))
         self.btn_open.setSizeIncrement(QSize(0, 0))
         font2 = QFont()
@@ -410,8 +415,8 @@ class Ui_MainWindow(object):
         self.cbx_client_3.addItem("")
         self.cbx_client_3.setObjectName(u"cbx_client_3")
         self.cbx_client_3.setEnabled(False)
-        sizePolicy3.setHeightForWidth(self.cbx_client_3.sizePolicy().hasHeightForWidth())
-        self.cbx_client_3.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.cbx_client_3.sizePolicy().hasHeightForWidth())
+        self.cbx_client_3.setSizePolicy(sizePolicy4)
         self.cbx_client_3.setMinimumSize(QSize(60, 20))
         self.cbx_client_3.setSizeIncrement(QSize(0, 30))
         font3 = QFont()
@@ -432,11 +437,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.btn_start = QPushButton(self.frame_action)
         self.btn_start.setObjectName(u"btn_start")
-        sizePolicy4 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.btn_start.sizePolicy().hasHeightForWidth())
-        self.btn_start.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.btn_start.sizePolicy().hasHeightForWidth())
+        self.btn_start.setSizePolicy(sizePolicy5)
         self.btn_start.setMinimumSize(QSize(0, 0))
         self.btn_start.setFont(font3)
         self.btn_start.setCursor(QCursor(Qt.PointingHandCursor))
@@ -464,8 +469,8 @@ class Ui_MainWindow(object):
         self.btn_pause = QPushButton(self.frame_action)
         self.btn_pause.setObjectName(u"btn_pause")
         self.btn_pause.setEnabled(False)
-        sizePolicy4.setHeightForWidth(self.btn_pause.sizePolicy().hasHeightForWidth())
-        self.btn_pause.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.btn_pause.sizePolicy().hasHeightForWidth())
+        self.btn_pause.setSizePolicy(sizePolicy5)
         self.btn_pause.setMinimumSize(QSize(0, 0))
         self.btn_pause.setFont(font3)
         self.btn_pause.setCursor(QCursor(Qt.PointingHandCursor))
@@ -493,8 +498,8 @@ class Ui_MainWindow(object):
         self.btn_stop = QPushButton(self.frame_action)
         self.btn_stop.setObjectName(u"btn_stop")
         self.btn_stop.setEnabled(False)
-        sizePolicy4.setHeightForWidth(self.btn_stop.sizePolicy().hasHeightForWidth())
-        self.btn_stop.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.btn_stop.sizePolicy().hasHeightForWidth())
+        self.btn_stop.setSizePolicy(sizePolicy5)
         self.btn_stop.setMinimumSize(QSize(0, 0))
         font4 = QFont()
         font4.setPointSize(9)
@@ -547,11 +552,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.btn_slq_get = QPushButton(self.frame_sql)
         self.btn_slq_get.setObjectName(u"btn_slq_get")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.btn_slq_get.sizePolicy().hasHeightForWidth())
-        self.btn_slq_get.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.btn_slq_get.sizePolicy().hasHeightForWidth())
+        self.btn_slq_get.setSizePolicy(sizePolicy6)
         self.btn_slq_get.setMinimumSize(QSize(0, 0))
         self.btn_slq_get.setMaximumSize(QSize(16777215, 16777215))
         self.btn_slq_get.setFont(font3)
@@ -571,8 +576,8 @@ class Ui_MainWindow(object):
         self.cbx_inteface.addItem(icon2, "")
         self.cbx_inteface.setObjectName(u"cbx_inteface")
         self.cbx_inteface.setEnabled(True)
-        sizePolicy3.setHeightForWidth(self.cbx_inteface.sizePolicy().hasHeightForWidth())
-        self.cbx_inteface.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.cbx_inteface.sizePolicy().hasHeightForWidth())
+        self.cbx_inteface.setSizePolicy(sizePolicy4)
         self.cbx_inteface.setMinimumSize(QSize(100, 25))
         self.cbx_inteface.setMaximumSize(QSize(150, 16777215))
         self.cbx_inteface.setSizeIncrement(QSize(0, 0))
@@ -586,11 +591,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_2 = QPushButton(self.frame_sql)
         self.btn_sql_2.setObjectName(u"btn_sql_2")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.btn_sql_2.sizePolicy().hasHeightForWidth())
-        self.btn_sql_2.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_2.sizePolicy().hasHeightForWidth())
+        self.btn_sql_2.setSizePolicy(sizePolicy3)
         self.btn_sql_2.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_2.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -690,8 +692,8 @@ class Ui_MainWindow(object):
 
         self.menu_parameter = QFrame(self.centralwidget)
         self.menu_parameter.setObjectName(u"menu_parameter")
-        sizePolicy6.setHeightForWidth(self.menu_parameter.sizePolicy().hasHeightForWidth())
-        self.menu_parameter.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.menu_parameter.sizePolicy().hasHeightForWidth())
+        self.menu_parameter.setSizePolicy(sizePolicy3)
         self.menu_parameter.setMinimumSize(QSize(0, 0))
         self.menu_parameter.setMaximumSize(QSize(0, 16777215))
         self.menu_parameter.setStyleSheet(u"color: rgb(7, 64, 128);")
@@ -743,8 +745,8 @@ class Ui_MainWindow(object):
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.btn_sql_10 = QPushButton(self.fm_parameter1)
         self.btn_sql_10.setObjectName(u"btn_sql_10")
-        sizePolicy6.setHeightForWidth(self.btn_sql_10.sizePolicy().hasHeightForWidth())
-        self.btn_sql_10.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_10.sizePolicy().hasHeightForWidth())
+        self.btn_sql_10.setSizePolicy(sizePolicy3)
         self.btn_sql_10.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_10.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -765,8 +767,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_8 = QPushButton(self.fm_parameter1)
         self.btn_sql_8.setObjectName(u"btn_sql_8")
-        sizePolicy6.setHeightForWidth(self.btn_sql_8.sizePolicy().hasHeightForWidth())
-        self.btn_sql_8.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_8.sizePolicy().hasHeightForWidth())
+        self.btn_sql_8.setSizePolicy(sizePolicy3)
         self.btn_sql_8.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_8.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -802,8 +804,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_9 = QPushButton(self.fm_parameter1)
         self.btn_sql_9.setObjectName(u"btn_sql_9")
-        sizePolicy6.setHeightForWidth(self.btn_sql_9.sizePolicy().hasHeightForWidth())
-        self.btn_sql_9.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_9.sizePolicy().hasHeightForWidth())
+        self.btn_sql_9.setSizePolicy(sizePolicy3)
         self.btn_sql_9.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_9.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -847,8 +849,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_4 = QPushButton(self.fm_parameter1)
         self.btn_sql_4.setObjectName(u"btn_sql_4")
-        sizePolicy6.setHeightForWidth(self.btn_sql_4.sizePolicy().hasHeightForWidth())
-        self.btn_sql_4.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_4.sizePolicy().hasHeightForWidth())
+        self.btn_sql_4.setSizePolicy(sizePolicy3)
         self.btn_sql_4.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_4.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -907,8 +909,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_5 = QPushButton(self.fm_parameter1)
         self.btn_sql_5.setObjectName(u"btn_sql_5")
-        sizePolicy6.setHeightForWidth(self.btn_sql_5.sizePolicy().hasHeightForWidth())
-        self.btn_sql_5.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_5.sizePolicy().hasHeightForWidth())
+        self.btn_sql_5.setSizePolicy(sizePolicy3)
         self.btn_sql_5.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_5.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -927,8 +929,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_7 = QPushButton(self.fm_parameter1)
         self.btn_sql_7.setObjectName(u"btn_sql_7")
-        sizePolicy6.setHeightForWidth(self.btn_sql_7.sizePolicy().hasHeightForWidth())
-        self.btn_sql_7.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_7.sizePolicy().hasHeightForWidth())
+        self.btn_sql_7.setSizePolicy(sizePolicy3)
         self.btn_sql_7.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_7.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -1086,8 +1088,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_6 = QPushButton(self.fm_parameter1)
         self.btn_sql_6.setObjectName(u"btn_sql_6")
-        sizePolicy6.setHeightForWidth(self.btn_sql_6.sizePolicy().hasHeightForWidth())
-        self.btn_sql_6.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_6.sizePolicy().hasHeightForWidth())
+        self.btn_sql_6.setSizePolicy(sizePolicy3)
         self.btn_sql_6.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_6.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -1135,8 +1137,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_11 = QPushButton(self.fm_parameter1)
         self.btn_sql_11.setObjectName(u"btn_sql_11")
-        sizePolicy6.setHeightForWidth(self.btn_sql_11.sizePolicy().hasHeightForWidth())
-        self.btn_sql_11.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_11.sizePolicy().hasHeightForWidth())
+        self.btn_sql_11.setSizePolicy(sizePolicy3)
         self.btn_sql_11.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_11.setStyleSheet(u"QPushButton{\n"
 "	color: rgb(7, 64, 128);\n"
@@ -1262,8 +1264,8 @@ class Ui_MainWindow(object):
 
         self.gb_parameter_3 = QGroupBox(self.gb_parameter)
         self.gb_parameter_3.setObjectName(u"gb_parameter_3")
-        sizePolicy6.setHeightForWidth(self.gb_parameter_3.sizePolicy().hasHeightForWidth())
-        self.gb_parameter_3.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.gb_parameter_3.sizePolicy().hasHeightForWidth())
+        self.gb_parameter_3.setSizePolicy(sizePolicy3)
         self.gb_parameter_3.setFont(font4)
         self.verticalLayout_14 = QVBoxLayout(self.gb_parameter_3)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
@@ -1432,6 +1434,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.frame_15)
 
+        self.verticalSpacer_18 = QSpacerItem(20, 24, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_6.addItem(self.verticalSpacer_18)
+
 
         self.verticalLayout_3.addWidget(self.frame_7)
 
@@ -1522,8 +1528,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.lb_sid = QLabel(self.gb_login)
         self.lb_sid.setObjectName(u"lb_sid")
-        sizePolicy3.setHeightForWidth(self.lb_sid.sizePolicy().hasHeightForWidth())
-        self.lb_sid.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.lb_sid.sizePolicy().hasHeightForWidth())
+        self.lb_sid.setSizePolicy(sizePolicy4)
         self.lb_sid.setMinimumSize(QSize(0, 30))
         self.lb_sid.setFont(font3)
 
@@ -1534,8 +1540,8 @@ class Ui_MainWindow(object):
         self.cbx_sid.addItem("")
         self.cbx_sid.addItem("")
         self.cbx_sid.setObjectName(u"cbx_sid")
-        sizePolicy3.setHeightForWidth(self.cbx_sid.sizePolicy().hasHeightForWidth())
-        self.cbx_sid.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.cbx_sid.sizePolicy().hasHeightForWidth())
+        self.cbx_sid.setSizePolicy(sizePolicy4)
         self.cbx_sid.setMinimumSize(QSize(70, 0))
         self.cbx_sid.setSizeIncrement(QSize(0, 30))
         self.cbx_sid.setFont(font1)
@@ -1548,8 +1554,8 @@ class Ui_MainWindow(object):
 
         self.lb_clt = QLabel(self.gb_login)
         self.lb_clt.setObjectName(u"lb_clt")
-        sizePolicy3.setHeightForWidth(self.lb_clt.sizePolicy().hasHeightForWidth())
-        self.lb_clt.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.lb_clt.sizePolicy().hasHeightForWidth())
+        self.lb_clt.setSizePolicy(sizePolicy4)
         self.lb_clt.setMinimumSize(QSize(0, 30))
         self.lb_clt.setFont(font3)
 
@@ -1561,8 +1567,8 @@ class Ui_MainWindow(object):
         self.cbx_client.addItem("")
         self.cbx_client.addItem("")
         self.cbx_client.setObjectName(u"cbx_client")
-        sizePolicy3.setHeightForWidth(self.cbx_client.sizePolicy().hasHeightForWidth())
-        self.cbx_client.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.cbx_client.sizePolicy().hasHeightForWidth())
+        self.cbx_client.setSizePolicy(sizePolicy4)
         self.cbx_client.setMinimumSize(QSize(70, 0))
         self.cbx_client.setSizeIncrement(QSize(0, 30))
         self.cbx_client.setFont(font1)
@@ -1651,8 +1657,8 @@ class Ui_MainWindow(object):
 
         self.btn_login = QPushButton(self.gb_login)
         self.btn_login.setObjectName(u"btn_login")
-        sizePolicy2.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
-        self.btn_login.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.btn_login.sizePolicy().hasHeightForWidth())
+        self.btn_login.setSizePolicy(sizePolicy3)
         self.btn_login.setMinimumSize(QSize(0, 0))
         self.btn_login.setFont(font4)
         self.btn_login.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1987,8 +1993,8 @@ class Ui_MainWindow(object):
 
         self.btn_sql_3 = QPushButton(self.groupBox_rpa_configure_2)
         self.btn_sql_3.setObjectName(u"btn_sql_3")
-        sizePolicy6.setHeightForWidth(self.btn_sql_3.sizePolicy().hasHeightForWidth())
-        self.btn_sql_3.setSizePolicy(sizePolicy6)
+        sizePolicy3.setHeightForWidth(self.btn_sql_3.sizePolicy().hasHeightForWidth())
+        self.btn_sql_3.setSizePolicy(sizePolicy3)
         self.btn_sql_3.setMaximumSize(QSize(20, 20))
         self.btn_sql_3.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_sql_3.setStyleSheet(u"QPushButton{\n"
@@ -2008,10 +2014,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_10)
-
-        self.verticalSpacer_18 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.verticalLayout_12.addItem(self.verticalSpacer_18)
 
         self.horizontalLayout_29 = QHBoxLayout()
         self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
@@ -2298,9 +2300,9 @@ class Ui_MainWindow(object):
         self.groupBox_rpa_configure.setTitle(QCoreApplication.translate("MainWindow", u"Function", None))
         self.lb_usr_9.setText(QCoreApplication.translate("MainWindow", u"ALK Chatbot Enable", None))
         self.checkBox_7.setText("")
-        self.lb_usr_5.setText(QCoreApplication.translate("MainWindow", u"Automatic Connect SAP", None))
+        self.lb_usr_5.setText(QCoreApplication.translate("MainWindow", u"RFC Enable", None))
         self.checkBox_3.setText("")
-        self.lb_usr_6.setText(QCoreApplication.translate("MainWindow", u"Automatic Connect MESDB", None))
+        self.lb_usr_6.setText(QCoreApplication.translate("MainWindow", u"Connect MES Database", None))
         self.checkBox_4.setText("")
         self.lb_usr_7.setText(QCoreApplication.translate("MainWindow", u"Automatic Export to Excel", None))
         self.checkBox_5.setText("")
