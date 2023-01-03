@@ -6,14 +6,34 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from PySide6 import QtCore
 from ui_main import Ui_MainWindow
-import sys
-import os
+import sys, os
 import pandas as pd
 from func_sap import SapGui
 from func_sql import MES_DB
+from func_rfc import SAP_RFC
 from datetime import time, datetime
 # -SUB Main--------------------------------------------------------------
 # Class Table Widget
+class TableWithCopy(QTableWidget):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def keyPressEvent(self, event):
+        super().keyPressEvent(event)
+        if event.key() == Qt.Key.Key_C and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
+            copied_cells = sorted(self.selectedIndexes())
+
+            copy_text = ''
+            max_column = copied_cells[-1].column()
+            for c in copied_cells:
+                copy_text += self.item(c.row(), c.column()).text()
+                if c.column() == max_column:
+                    copy_text += '\n'
+                else:
+                    copy_text += '\t'
+
+            QApplication.clipboard().setText(copy_text)
+
 class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -46,7 +66,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         # Close System
         self.btn_close_sap.clicked.connect(self.fnc_close_system)
         # Table Widget Setup
-
+        
     # TuNA 221117 _ Update logic for right menu.
 
     def right_menu(self):
@@ -174,7 +194,14 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
                 self.fnc_notice(msg)
         # Change Business Partner
         if self.cbx_transaction.currentText() == "Business Partner":
-            self.txt_msg.setText(self.sap.sapChangeBP(str(self.file[0])))
+            rfc = SAP_RFC()
+            header = rfc.table_header(["MANDT", "LIFNR", "LAND1", "NAME1", "NAME2", "NAME3","NAME4", "ORT01", "ORT02", "PFACH", "PSTL2", "PSTLZ", "REGIO", "SORTL"])
+            # self.load_df(data)
+            self.tb_ledger.setHorizontalHeaderLabels(header)
+            self.tb_ledger.setColumnCount(len(header))
+            # self.load_df(rfc.querry())
+            pass
+            
 
     def fnc_button_stop(self):
         return 'New features are developing...'

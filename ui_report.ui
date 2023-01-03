@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1088</width>
-    <height>687</height>
+    <width>1216</width>
+    <height>841</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -108,7 +108,7 @@ p, li { white-space: pre-wrap; }
              <string notr="true">color: rgb(7, 64, 128);</string>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#55007f;&quot;&gt;ALUKO ROBOTIC PROCESS AUTOMATION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#55007f;&quot;&gt;ROBOTIC PROCESS AUTOMATION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -2753,7 +2753,7 @@ QPushButton:hover{
                      <property name="sizeHint" stdset="0">
                       <size>
                        <width>20</width>
-                       <height>6</height>
+                       <height>10</height>
                       </size>
                      </property>
                     </spacer>
@@ -3195,7 +3195,7 @@ QCheckBox::indicator:unchecked{
       </property>
       <property name="maximumSize">
        <size>
-        <width>0</width>
+        <width>16777215</width>
         <height>16777215</height>
        </size>
       </property>
@@ -3410,6 +3410,21 @@ QCheckBox::indicator:unchecked{
                    <pointsize>8</pointsize>
                   </font>
                  </property>
+                 <item>
+                  <property name="text">
+                   <string>PSN</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>QSN</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>DSN</string>
+                  </property>
+                 </item>
                  <item>
                   <property name="text">
                    <string>PSA</string>
@@ -3795,7 +3810,7 @@ QPushButton:hover{
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <layout class="QHBoxLayout" name="token">
             <item>
              <widget class="QLabel" name="lb_usr_2">
               <property name="sizePolicy">
@@ -4095,7 +4110,7 @@ QCheckBox::indicator:unchecked{
                   </font>
                  </property>
                  <property name="text">
-                  <string>RFC Enable</string>
+                  <string>SAP RFC Enable</string>
                  </property>
                 </widget>
                </item>
@@ -4209,7 +4224,7 @@ QCheckBox::indicator:unchecked{
                   </font>
                  </property>
                  <property name="text">
-                  <string>Connect MES Database</string>
+                  <string>MES - Oracle DB</string>
                  </property>
                 </widget>
                </item>
@@ -4584,6 +4599,22 @@ QPushButton:hover{
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_29"/>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_49">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>6</height>
+                </size>
+               </property>
+              </spacer>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_21">

@@ -23,32 +23,12 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QAbstract
     QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Aluko_rc
-class TableWithCopy(QTableWidget):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
-    def keyPressEvent(self, event):
-        super().keyPressEvent(event)
-        if event.key() == Qt.Key.Key_C and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
-            copied_cells = sorted(self.selectedIndexes())
-
-            copy_text = ''
-            max_column = copied_cells[-1].column()
-            for c in copied_cells:
-                copy_text += self.item(c.row(), c.column()).text()
-                if c.column() == max_column:
-                    copy_text += '\n'
-                else:
-                    copy_text += '\t'
-
-            QApplication.clipboard().setText(copy_text)
-
-# Class QTableWidget Action
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1088, 687)
+        MainWindow.resize(1216, 841)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -437,11 +417,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.btn_start = QPushButton(self.frame_action)
         self.btn_start.setObjectName(u"btn_start")
-        sizePolicy5 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.btn_start.sizePolicy().hasHeightForWidth())
-        self.btn_start.setSizePolicy(sizePolicy5)
+        sizePolicy.setHeightForWidth(self.btn_start.sizePolicy().hasHeightForWidth())
+        self.btn_start.setSizePolicy(sizePolicy)
         self.btn_start.setMinimumSize(QSize(0, 0))
         self.btn_start.setFont(font3)
         self.btn_start.setCursor(QCursor(Qt.PointingHandCursor))
@@ -462,13 +439,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.btn_start)
 
-        self.horizontalSpacer_8 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
-
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_8)
-
         self.btn_pause = QPushButton(self.frame_action)
         self.btn_pause.setObjectName(u"btn_pause")
         self.btn_pause.setEnabled(False)
+        sizePolicy5 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Expanding)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.btn_pause.sizePolicy().hasHeightForWidth())
         self.btn_pause.setSizePolicy(sizePolicy5)
         self.btn_pause.setMinimumSize(QSize(0, 0))
@@ -490,10 +466,6 @@ class Ui_MainWindow(object):
         self.btn_pause.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_18.addWidget(self.btn_pause)
-
-        self.horizontalSpacer_7 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
-
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_7)
 
         self.btn_stop = QPushButton(self.frame_action)
         self.btn_stop.setObjectName(u"btn_stop")
@@ -523,10 +495,6 @@ class Ui_MainWindow(object):
         self.btn_stop.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_18.addWidget(self.btn_stop)
-
-        self.horizontalSpacer_20 = QSpacerItem(15, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_20)
 
 
         self.verticalLayout_11.addLayout(self.horizontalLayout_18)
@@ -640,7 +608,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.bottom_frame)
 
-        self.tb_ledger = TableWithCopy(self.frame)
+        self.tb_ledger = QTableWidget(self.frame)
         if (self.tb_ledger.columnCount() < 20):
             self.tb_ledger.setColumnCount(20)
         if (self.tb_ledger.rowCount() < 20):
@@ -1252,7 +1220,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.dateEdit_12, 0, 1, 1, 1)
 
-        self.verticalSpacer_39 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_39 = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.gridLayout_9.addItem(self.verticalSpacer_39, 1, 2, 1, 1)
 
@@ -1449,7 +1417,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.side_container.sizePolicy().hasHeightForWidth())
         self.side_container.setSizePolicy(sizePolicy)
         self.side_container.setMinimumSize(QSize(0, 0))
-        self.side_container.setMaximumSize(QSize(0, 16777215))
+        self.side_container.setMaximumSize(QSize(16777215, 16777215))
         self.side_container.setStyleSheet(u"color: rgb(7, 64, 128);")
         self.side_container.setFrameShape(QFrame.StyledPanel)
         self.side_container.setFrameShadow(QFrame.Raised)
@@ -1536,6 +1504,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.lb_sid)
 
         self.cbx_sid = QComboBox(self.gb_login)
+        self.cbx_sid.addItem("")
+        self.cbx_sid.addItem("")
+        self.cbx_sid.addItem("")
         self.cbx_sid.addItem("")
         self.cbx_sid.addItem("")
         self.cbx_sid.addItem("")
@@ -1692,8 +1663,8 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.gb_login)
 
-        self.horizontalLayout_12 = QHBoxLayout()
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.token = QHBoxLayout()
+        self.token.setObjectName(u"token")
         self.lb_usr_2 = QLabel(self.frame_4)
         self.lb_usr_2.setObjectName(u"lb_usr_2")
         sizePolicy9.setHeightForWidth(self.lb_usr_2.sizePolicy().hasHeightForWidth())
@@ -1702,7 +1673,7 @@ class Ui_MainWindow(object):
         self.lb_usr_2.setMaximumSize(QSize(60, 30))
         self.lb_usr_2.setFont(font7)
 
-        self.horizontalLayout_12.addWidget(self.lb_usr_2)
+        self.token.addWidget(self.lb_usr_2)
 
         self.txt_usr_2 = QLineEdit(self.frame_4)
         self.txt_usr_2.setObjectName(u"txt_usr_2")
@@ -1727,10 +1698,10 @@ class Ui_MainWindow(object):
         self.txt_usr_2.setMaxLength(1000000)
         self.txt_usr_2.setEchoMode(QLineEdit.PasswordEchoOnEdit)
 
-        self.horizontalLayout_12.addWidget(self.txt_usr_2)
+        self.token.addWidget(self.txt_usr_2)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_12)
+        self.verticalLayout.addLayout(self.token)
 
         self.verticalSpacer_11 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
@@ -2020,6 +1991,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_29)
 
+        self.verticalSpacer_49 = QSpacerItem(20, 6, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_49)
+
         self.horizontalLayout_21 = QHBoxLayout()
         self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
         self.btn_ledger = QPushButton(self.groupBox_rpa_configure_2)
@@ -2175,7 +2150,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.label_2.setToolTip("")
 #endif // QT_CONFIG(tooltip)
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ALUKO ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600; color:#55007f;\">ROBOTIC PROCESS AUTOMATION</span></p></body></html>", None))
         self.cbx_ribbon.setText("")
         self.btn_parameter.setText("")
         self.btn_sql.setText("")
@@ -2279,9 +2254,12 @@ class Ui_MainWindow(object):
         self.act_oracle_db.setText(QCoreApplication.translate("MainWindow", u"ODB", None))
         self.act_gw.setText(QCoreApplication.translate("MainWindow", u"Groupware", None))
         self.lb_sid.setText(QCoreApplication.translate("MainWindow", u"SID: ", None))
-        self.cbx_sid.setItemText(0, QCoreApplication.translate("MainWindow", u"PSA", None))
-        self.cbx_sid.setItemText(1, QCoreApplication.translate("MainWindow", u"QAS", None))
-        self.cbx_sid.setItemText(2, QCoreApplication.translate("MainWindow", u"DEV", None))
+        self.cbx_sid.setItemText(0, QCoreApplication.translate("MainWindow", u"PSN", None))
+        self.cbx_sid.setItemText(1, QCoreApplication.translate("MainWindow", u"QSN", None))
+        self.cbx_sid.setItemText(2, QCoreApplication.translate("MainWindow", u"DSN", None))
+        self.cbx_sid.setItemText(3, QCoreApplication.translate("MainWindow", u"PSA", None))
+        self.cbx_sid.setItemText(4, QCoreApplication.translate("MainWindow", u"QAS", None))
+        self.cbx_sid.setItemText(5, QCoreApplication.translate("MainWindow", u"DEV", None))
 
         self.lb_clt.setText(QCoreApplication.translate("MainWindow", u"Client:", None))
         self.cbx_client.setItemText(0, QCoreApplication.translate("MainWindow", u"100", None))
@@ -2300,9 +2278,9 @@ class Ui_MainWindow(object):
         self.groupBox_rpa_configure.setTitle(QCoreApplication.translate("MainWindow", u"Function", None))
         self.lb_usr_9.setText(QCoreApplication.translate("MainWindow", u"ALK Chatbot Enable", None))
         self.checkBox_7.setText("")
-        self.lb_usr_5.setText(QCoreApplication.translate("MainWindow", u"RFC Enable", None))
+        self.lb_usr_5.setText(QCoreApplication.translate("MainWindow", u"SAP RFC Enable", None))
         self.checkBox_3.setText("")
-        self.lb_usr_6.setText(QCoreApplication.translate("MainWindow", u"Connect MES Database", None))
+        self.lb_usr_6.setText(QCoreApplication.translate("MainWindow", u"MES - Oracle DB", None))
         self.checkBox_4.setText("")
         self.lb_usr_7.setText(QCoreApplication.translate("MainWindow", u"Automatic Export to Excel", None))
         self.checkBox_5.setText("")

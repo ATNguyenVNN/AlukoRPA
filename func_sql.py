@@ -8,7 +8,7 @@ class MES_DB():
               try:
                      self.host = host
                      self.port = port
-                     path_lib = os.getcwd()+"Lib\Windows"
+                     path_lib = r'C:\nwrfcsdk\OracleDB'
                      if platform.system() == "Darwin":
                             lib_dir = os.path.join(os.environ.get("HOME"), "Downloads",
                                    "instantclient_19_8")

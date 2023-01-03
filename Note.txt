@@ -13,3 +13,14 @@ Step2: pip install -r setup.txt
 Step3: pyinstaller --onefile -w --icon='C:\Users\Admin\Documents\Aluko_Projects\dist\IMG\aluko_logo.ico' main.py
         pyinstaller --onefile --icon="C:\Users\Admin\Documents\AlukoRPA\RPA\dist\IMG\aluko_logo.ico" main.py       
         # Bỏ -w nếu muốn hiện console
+
+# Add Path into Environment Variable:
+        SAPNWRFC_HOME=C:\nwrfcsdk\nwrfcsdk
+        C:\nwrfcsdk\nwrfcsdk\lib
+        C:\nwrfcsdk\nwrfcsdk\bin
+
+        C:\nwrfcsdk\nwrfcsdk
+        C:\nwrfcsdk\nwrfcsdk\lib
+
+
+
