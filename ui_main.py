@@ -23,7 +23,24 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QAbstract
     QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Aluko_rc
+class TableWithCopy(QTableWidget):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
+    def keyPressEvent(self, event):
+        super().keyPressEvent(event)
+        if event.key() == Qt.Key.Key_C and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
+            copied_cells = sorted(self.selectedIndexes())
+            copy_text = ''
+            max_column = copied_cells[-1].column()
+            for c in copied_cells:
+                copy_text += self.item(c.row(), c.column()).text()
+                if c.column() == max_column:
+                    copy_text += '\n'
+                else:
+                    copy_text += '\t'
+
+            QApplication.clipboard().setText(copy_text)
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -608,7 +625,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.bottom_frame)
 
-        self.tb_ledger = QTableWidget(self.frame)
+        self.tb_ledger = TableWithCopy(self.frame)
         if (self.tb_ledger.columnCount() < 20):
             self.tb_ledger.setColumnCount(20)
         if (self.tb_ledger.rowCount() < 20):

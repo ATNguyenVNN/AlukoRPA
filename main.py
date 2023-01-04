@@ -22,7 +22,6 @@ class TableWithCopy(QTableWidget):
         super().keyPressEvent(event)
         if event.key() == Qt.Key.Key_C and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
             copied_cells = sorted(self.selectedIndexes())
-
             copy_text = ''
             max_column = copied_cells[-1].column()
             for c in copied_cells:
@@ -73,7 +72,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         self.label_2.setText("")
         width = self.side_container.width()
         if width == 0:
-            newWidth = 400
+            newWidth = 300
             print(self.label_2.width())
             if self.label_2.width() < 696:
                 self.label_2.width()
@@ -270,7 +269,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, QTableWidget):
         self.tb_ledger.setRowCount(df.shape[0])
         self.tb_ledger.setColumnCount(df.shape[1])
 
-        header = self.tb_ledger.setHorizontalHeaderLabels(df.columns)
+        self.tb_ledger.setHorizontalHeaderLabels(df.columns)
         # Returns pandas array object
         for row in df.iterrows():
             values = row[1]
